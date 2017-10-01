@@ -15,6 +15,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuardAdminService } from './services/auth-guard-admin.service';
 import { AuthGuardLoginService } from './services/auth-guard-login.service';
 import { HttpModule } from "@angular/http";
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HttpModule } from "@angular/http";
   imports: [
     RoutingModule,
     HttpModule,  //required
+    SharedModule,
     BrowserModule
   ],
   providers: [
