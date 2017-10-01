@@ -29,3 +29,20 @@ to run typescript first transpile ts to js by
 $ stc app.ts
 $ node app  //will run ap.js
 ```
+
+##_03_Install concurrently to run more than one comand using script
+```bash
+$npm install concurrently --save
+```
+
+set script in package.json
+```bash
+"dev": "concurrently \"mongod\" \"ng serve -pc proxy.conf.json --open\" \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
+
+```
+
+##_04_Creat user service for angular
+```bash
+$ ng g service services/user -dry
+
+```
