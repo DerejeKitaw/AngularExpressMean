@@ -8,5 +8,9 @@ import { ToastComponent } from './toast/toast.component';
     CommonModule
   ],
   declarations: [LoadingComponent, ToastComponent]
+  ,
+  providers: [
+    
+  ]
 })
 export class SharedModule { }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
@@ -16,6 +16,8 @@ import { AuthGuardAdminService } from './services/auth-guard-admin.service';
 import { AuthGuardLoginService } from './services/auth-guard-login.service';
 import { HttpModule } from "@angular/http";
 import { SharedModule } from './shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastComponent } from './shared/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +34,16 @@ import { SharedModule } from './shared/shared.module';
     RoutingModule,
     HttpModule,  //required
     SharedModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule, ReactiveFormsModule 
   ],
   providers: [
     AuthService,
     AuthGuardLoginService,
     AuthGuardAdminService,
-    UserService],
+    UserService,
+    ToastComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA], //to needed to loaad toast
   bootstrap: [AppComponent]
 })
 export class AppModule { }
