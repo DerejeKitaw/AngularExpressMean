@@ -1,3 +1,80 @@
-<p>
-  countys works!
-</p>
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">Current countys ({{countys.length}})</h4>
+  <div class="card-block">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>County Name</th>
+          <th>Ground Snow Load</th>
+          <th>Rapid Shutdown</th>
+          <th>Wind Speed</th>
+          <th></th>
+          
+        </tr>
+      </thead>
+      <tbody *ngIf="countys.length === 0">
+        <tr>
+          <td colspan="4">There are no countys in the DB. Add a new county below.</td>
+        </tr>  
+      </tbody>
+      <tbody *ngIf="!isEditing">
+        <tr *ngFor="let county of countys">
+          <td>{{county.countyName}}</td>
+          <td>{{county.groundSnowLoad}}</td>
+          <td>{{county.rapidShutdown}}</td>
+          <td>{{county.windSpeed}}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="enableEditing(county)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteCounty(county)"><i class="fa fa-trash"></i> Delete</button>
+          </td>
+        </tr>  
+      </tbody>
+      <tbody *ngIf="isEditing">
+        <tr>
+          <td colspan="4">
+            <form class="form-inline" #form="ngForm" (ngSubmit)="editCounty(county)" style="display:inline">
+              <div class="form-group">
+                  <input class="form-control" type="text" name="name" [(ngModel)]="county.countyName" placeholder="County Name" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="groundSnowLoad" [(ngModel)]="county.groundSnowLoad" placeholder="Ground Snow Load" min="0" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="Boolean" name="rapidShutdown" [(ngModel)]="county.rapidShutdown" placeholder="Rapid Shutdown" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="windSpeed" [(ngModel)]="county.windSpeed" placeholder="Wind Speed" step="any" min="0" required>
+              </div>
+              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+            </form>
+            <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card" *ngIf="!isEditing">
+  <h4 class="card-header">Add new county</h4>
+  <div class="card-block">
+    <form class="form-inline" [formGroup]="addCountyForm" (ngSubmit)="addCounty()" style="text-align:center">
+      <div class="form-group">
+          <input class="form-control" type="text" name="countyName" formControlName="countyName" placeholder="Coutny Name">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="number" name="groundSnowLoad" formControlName="groundSnowLoad" placeholder="Ground Snow Load" min="0">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="Boolean" name="rapidShutdown" formControlName="rapidShutdown" placeholder="Rapid Shutdown" step="any" min="0">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="number" name="windSpeed" formControlName="windSpeed" placeholder="Wind Speed" min="0">
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="!addCountyForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+    </form>
+  </div>
+</div>

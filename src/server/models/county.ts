@@ -2,10 +2,10 @@
 import * as mongoose from 'mongoose';
 
 const countySchema = new mongoose.Schema({
-    username: String,
+    countyName: String,
     groundSnowLoad: Number,
     rapidShutdown: Boolean,
-    windSpeed: String
+    windSpeed: Number
 });
 
 const County = mongoose.model('County', countySchema);
