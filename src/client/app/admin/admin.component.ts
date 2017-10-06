@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastComponent } from '../shared/toast/toast.component';
 
 @Component({
   selector: 'app-admin',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class AdminComponent implements OnInit {
 
   isLoading=true;
-  constructor() { }
+  constructor(
+    public toast:ToastComponent
+  ) { }
 
   ngOnInit() {
+    this.toast.setMessage('Admin','success')
   }
 
 }
