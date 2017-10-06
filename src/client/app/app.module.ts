@@ -19,6 +19,7 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastComponent } from './shared/toast/toast.component';
 import { CountysComponent } from './countys/countys.component';
+import { CountyService } from './services/county.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CountysComponent } from './countys/countys.component';
     AuthService,
     AuthGuardLoginService,
     AuthGuardAdminService,
-    UserService
+    UserService,
+    CountyService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA], //to needed to loaad toast
   bootstrap: [AppComponent]
