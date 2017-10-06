@@ -10,7 +10,7 @@ import { ToastComponent } from './toast/toast.component';
   declarations: [LoadingComponent, ToastComponent]
   ,
   providers: [
-    
+    ToastComponent
   ]
 })
 export class SharedModule { }

@@ -41,8 +41,8 @@ import { ToastComponent } from './shared/toast/toast.component';
     AuthService,
     AuthGuardLoginService,
     AuthGuardAdminService,
-    UserService,
-    ToastComponent],
+    UserService
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA], //to needed to loaad toast
   bootstrap: [AppComponent]
 })
