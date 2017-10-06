@@ -10,3 +10,4 @@ const countySchema = new mongoose.Schema({
 
 const County = mongoose.model('County', countySchema);
 
+export default County;
