@@ -10,6 +10,7 @@ import { AccountComponent } from './account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuardLoginService } from './services/auth-guard-login.service';
 import { AuthGuardAdminService } from './services/auth-guard-admin.service';
+import { CountysComponent } from './countys/countys.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardLoginService] },
+  { path: 'countys', component: CountysComponent, canActivate: [AuthGuardLoginService] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuardAdminService] },
   { path: 'notfound', component: NotFoundComponent },
   { path: '**', redirectTo: '/notfound' },

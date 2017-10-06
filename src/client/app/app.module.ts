@@ -18,6 +18,7 @@ import { HttpModule } from "@angular/http";
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastComponent } from './shared/toast/toast.component';
+import { CountysComponent } from './countys/countys.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ToastComponent } from './shared/toast/toast.component';
     LogoutComponent,
     HomeComponent,
     AccountComponent,
-    AdminComponent
+    AdminComponent,
+    CountysComponent
   ],
   imports: [
     RoutingModule,
