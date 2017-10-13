@@ -21,3 +21,14 @@
 ```bash
     ng g c countys --dry
 ```
+
+
+
+# install heruku
+```bash
+https://devcenter.heroku.com/articles/heroku-cli
+$ brew install heroku/brew/heroku
+$ npm install -g heroku-cli
+$ heroku --version
+$ heroku login
+```
