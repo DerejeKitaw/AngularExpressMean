@@ -1,8 +1,10 @@
 import * as express from 'express';
 
 import CountyCtrl from './controllers/county';
+import InverterCtrl from './controllers/inverter';
 import UserCtrl from './controllers/user';
 import County from './models/county';
+import Inverter from './models/inverter';
 import User from './models/user';
 
 export default function setRoutes(app) {
@@ -10,6 +12,7 @@ export default function setRoutes(app) {
   const router = express.Router();
 
   const countyCtrl = new CountyCtrl();
+  const inverterCtrl = new InverterCtrl();
   const userCtrl = new UserCtrl();
 
   // Countys
@@ -19,6 +22,14 @@ export default function setRoutes(app) {
   router.route('/county/:id').get(countyCtrl.get);
   router.route('/county/:id').put(countyCtrl.update);
   router.route('/county/:id').delete(countyCtrl.delete);
+
+  // Countys
+  router.route('/inverters').get(inverterCtrl.getAll);
+  router.route('/inverters/count').get(inverterCtrl.count);
+  router.route('/inverter').post(inverterCtrl.insert);
+  router.route('/inverter/:id').get(inverterCtrl.get);
+  router.route('/inverter/:id').put(inverterCtrl.update);
+  router.route('/inverter/:id').delete(inverterCtrl.delete);
 
   // Users
   router.route('/login').post(userCtrl.login);

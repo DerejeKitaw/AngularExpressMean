@@ -1,3 +1,91 @@
-<p>
-  inverters works!
-</p>
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">Current inverters ({{inverters.length}})</h4>
+  <div class="card-block">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>Inverter Name</th>
+          <th>Max AC Power Output</th>
+          <th>Max Continuous Output Current</th>
+          <th>Max Input Voltage</th>
+          <th>CEC Weighted Efficiency</th>
+          <th></th>
+          
+        </tr>
+      </thead>
+      <tbody *ngIf="inverters.length === 0">
+        <tr>
+          <td colspan="4">There are no inverters in the DB. Add a new inverter below.</td>
+        </tr>  
+      </tbody>
+      <tbody *ngIf="!isEditing">
+        <tr *ngFor="let inverter of inverters">
+          <td>{{inverter.inverterName}}</td>
+          <td>{{inverter.maxAcPowerOutput}}</td>
+          <td>{{inverter.maxContinuousOutputCurrent}}</td>
+          <td>{{inverter.maxInputVoltage}}</td>
+          <td>{{inverter.cecWeightedEfficiency}}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="enableEditing(inverter)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteInverter(inverter)"><i class="fa fa-trash"></i> Delete</button>
+          </td>
+        </tr>  
+      </tbody>
+      <tbody *ngIf="isEditing">
+        <tr>
+          <td colspan="4">
+            <form class="form-inline" #form="ngForm" (ngSubmit)="editInverter(inverter)" style="display:inline">
+              <div class="form-group">
+                  <input class="form-control" type="text" name="name" [(ngModel)]="inverter.inverterName" placeholder="Inverter Name" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="maxAcPowerOutput" [(ngModel)]="inverter.maxAcPowerOutput" placeholder="Max AC Power Output" min="0" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="maxContinuousOutputCurrent" [(ngModel)]="inverter.maxContinuousOutputCurrent" placeholder="Max Continuous Output Current" min="0" required>
+              </div>
+              <!-- <div class="form-group">
+                <input class="form-control" type="Boolean" name="maxContinuousOutputCurrent" [(ngModel)]="inverter.maxContinuousOutputCurrent" placeholder="Max Continuous Output Current" required>
+              </div> -->
+              <div class="form-group">
+                <input class="form-control" type="Boolean" name="maxInputVoltage" [(ngModel)]="inverter.maxInputVoltage" placeholder="Max Input Voltage" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="cecWeightedEfficiency" [(ngModel)]="inverter.cecWeightedEfficiency" placeholder="CEC Weighted Efficiency"  min="0" max="100" required>
+              </div>
+              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+            </form>
+            <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card" *ngIf="!isEditing">
+  <h4 class="card-header">Add new inverter</h4>
+  <div class="card-block">
+    <form class="form-inline" [formGroup]="addInverterForm" (ngSubmit)="addInverter()" style="text-align:center">
+      <div class="form-group">
+          <input class="form-control" type="text" name="inverterName" formControlName="inverterName" placeholder="Coutny Name">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="number" name="maxAcPowerOutput" formControlName="maxAcPowerOutput" placeholder="Max AC Power Output" min="0">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="Boolean" name="maxContinuousOutputCurrent" formControlName="maxContinuousOutputCurrent" placeholder="Max Continuous Output Current"  min="0">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="number" name="maxInputVoltage" formControlName="maxInputVoltage" placeholder="Max Input Voltage" min="0">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="number" name="cecWeightedEfficiency" formControlName="cecWeightedEfficiency" placeholder="CEC Weighted Efficiency" min="0">
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="!addInverterForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+    </form>
+  </div>
+</div>

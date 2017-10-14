@@ -22,6 +22,7 @@ import { CountysComponent } from './countys/countys.component';
 import { CountyService } from './services/county.service';
 import { InvertersComponent } from './inverters/inverters.component';
 import { PanelsComponent } from './panels/panels.component';
+import { InverterService } from './services/inverter.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { PanelsComponent } from './panels/panels.component';
     AuthGuardLoginService,
     AuthGuardAdminService,
     UserService,
-    CountyService
+    CountyService,
+    InverterService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA], //to needed to loaad toast
   bootstrap: [AppComponent]
