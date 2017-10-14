@@ -8,6 +8,12 @@
           <a routerLink="/countys" class="nav-item nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
             <i class="fa fa-home"></i> Countys
           </a>
+          <a routerLink="/inverters" class="nav-item nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+            <i class="fa fa-home"></i> Inverters
+          </a>
+          <a routerLink="/panels" class="nav-item nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+            <i class="fa fa-home"></i> Panels
+          </a>
           
           <a routerLink="/login" class="nav-item nav-link " routerLinkActive="active" *ngIf="!auth.loggedIn">
             <i class="fa fa-sign-in"></i> Login

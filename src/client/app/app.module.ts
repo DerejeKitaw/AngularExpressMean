@@ -20,6 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastComponent } from './shared/toast/toast.component';
 import { CountysComponent } from './countys/countys.component';
 import { CountyService } from './services/county.service';
+import { InvertersComponent } from './inverters/inverters.component';
+import { PanelsComponent } from './panels/panels.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { CountyService } from './services/county.service';
     HomeComponent,
     AccountComponent,
     AdminComponent,
-    CountysComponent
+    CountysComponent,
+    InvertersComponent,
+    PanelsComponent
   ],
   imports: [
     RoutingModule,
