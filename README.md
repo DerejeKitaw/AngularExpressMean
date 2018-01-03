@@ -1,7 +1,7 @@
 # AngularExpressMean
 ##_01_Create client folder and install angular for front end
 ```bash
-# ng new src -sd client  --style scss --dry
+# ng new src -sd client  --style scss --routing --dry
 ```
     remove --dry to install angular
 
