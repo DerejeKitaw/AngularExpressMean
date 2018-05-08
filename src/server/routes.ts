@@ -5,6 +5,7 @@ import InverterCtrl from './controllers/inverter';
 import UserCtrl from './controllers/user';
 import County from './models/county';
 import Inverter from './models/inverter';
+import PanelCtrl from './controllers/panel';
 import User from './models/user';
 
 export default function setRoutes(app) {
@@ -13,6 +14,7 @@ export default function setRoutes(app) {
 
   const countyCtrl = new CountyCtrl();
   const inverterCtrl = new InverterCtrl();
+  const panelCtrl = new PanelCtrl();
   const userCtrl = new UserCtrl();
 
   // Countys
@@ -23,13 +25,21 @@ export default function setRoutes(app) {
   router.route('/county/:id').put(countyCtrl.update);
   router.route('/county/:id').delete(countyCtrl.delete);
 
-  // Countys
+  // Inverters
   router.route('/inverters').get(inverterCtrl.getAll);
   router.route('/inverters/count').get(inverterCtrl.count);
   router.route('/inverter').post(inverterCtrl.insert);
   router.route('/inverter/:id').get(inverterCtrl.get);
   router.route('/inverter/:id').put(inverterCtrl.update);
   router.route('/inverter/:id').delete(inverterCtrl.delete);
+
+  // Inverters
+  router.route('/panels').get(panelCtrl.getAll);
+  router.route('/panels/count').get(panelCtrl.count);
+  router.route('/panel').post(panelCtrl.insert);
+  router.route('/panel/:id').get(panelCtrl.get);
+  router.route('/panel/:id').put(panelCtrl.update);
+  router.route('/panel/:id').delete(panelCtrl.delete);
 
   // Users
   router.route('/login').post(userCtrl.login);

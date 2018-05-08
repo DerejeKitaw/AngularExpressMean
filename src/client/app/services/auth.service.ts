@@ -15,8 +15,11 @@ export class AuthService {
 
   constructor(private userService: UserService,
               private router: Router) {
-    const token = localStorage.getItem('token');
-    if (token) {
+                console.log('authService run');
+                const token = localStorage.getItem('token');
+                console.log('token1: '+token);
+                if (token) {
+                  console.log('token after if: '+token);
       const decodedUser = this.decodeUserFromToken(token);
       this.setCurrentUser(decodedUser);
     }

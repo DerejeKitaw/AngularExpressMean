@@ -1,0 +1,132 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">Current panels ({{panels.length}})</h4>
+  <div class="card-block">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>panelName </th>
+          <th>powerRating </th>
+          <th>Imp </th>
+          <th>Vmp </th>
+          <th>Isc </th>
+          <th>Voc </th>
+          <th>tempCoefficientofIsc </th>
+          <th>tempCoefficientofVoc </th>
+          <th>TempCoefficientofPower </th>
+          <th>maximumSytemVoltage </th>
+          <th>length </th>
+          <th>width </th>
+          <th>depth </th>
+          <th>weight </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody *ngIf="panels.length === 0">
+        <tr>
+          <td colspan="4">There are no panels in the DB. Add a new panel below.</td>
+        </tr>  
+      </tbody>
+      <tbody *ngIf="!isEditing">
+        <tr *ngFor="let panel of panels">
+          <td>{{panel.panelName}}</td>
+         <td>{{panel.powerRating}}}}</td>
+         <td>{{panel.Imp}}}}</td>
+         <td>{{panel.Vmp}}}}</td>
+         <td>{{panel.Isc}}}}</td>
+         <td>{{panel.Voc}}}}</td>
+         <td>{{panel.tempCoefficientofIsc}}}}</td>
+         <td>{{panel.tempCoefficientofVoc}}}}</td>
+         <td>{{panel.TempCoefficientofPower}}}}</td>
+         <td>{{panel.maximumSytemVoltage}}}}</td>
+         <td>{{panel.length}}}}</td>
+         <td>{{panel.width}}}}</td>
+         <td>{{panel.depth}}}}</td>
+         <td>{{panel.weight}}}}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="enableEditing(panel)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deletePanel(panel)"><i class="fa fa-trash"></i> Delete</button>
+          </td>
+        </tr>  
+      </tbody>
+      <tbody *ngIf="isEditing">
+        <tr>
+          <td colspan="8">
+            <form class="form-inline" #form="ngForm" (ngSubmit)="editPanel(panel)" style="display:inline">
+              <div class="form-group">
+                  <input class="form-control" type="text" name="panelName" [(ngModel)]="panel.panelName" placeholder="Panel Name" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="powerRating" [(ngModel)]="panel.powerRating" placeholder="Power Rating" min="0" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="Imp" [(ngModel)]="panel.Imp" placeholder="Imp" min="0" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="Boolean" name="Vmp" [(ngModel)]="panel.Vmp" placeholder="Vmp" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="Boolean" name="Isc" [(ngModel)]="panel.Isc" placeholder="Isc" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="Voc" [(ngModel)]="panel.Voc" placeholder="Voc"  min="0" max="100" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="tempCoefficientofIsc" [(ngModel)]="panel.tempCoefficientofIsc" placeholder="tempCoefficientofIsc"  min="0" max="100" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="tempCoefficientofVoc" [(ngModel)]="panel.tempCoefficientofVoc" placeholder="tempCoefficientofVoc"  min="0" max="100" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="TempCoefficientofPower" [(ngModel)]="panel.TempCoefficientofPower" placeholder="TempCoefficientofPower"  min="0" max="100" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="maximumSytemVoltage" [(ngModel)]="panel.maximumSytemVoltage" placeholder="maximumSytemVoltage"  min="0" max="100" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="length" [(ngModel)]="panel.length" placeholder="length"  min="0" max="100" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="width" [(ngModel)]="panel.width" placeholder="width"  min="0" max="100" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="depth" [(ngModel)]="panel.depth" placeholder="depth"  min="0" max="100" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="number" name="weight" [(ngModel)]="panel.weight" placeholder="weight"  min="0" max="100" required>
+              </div>
+              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+            </form>
+            <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card" *ngIf="!isEditing">
+  <h4 class="card-header">Add new panel</h4>
+  <div class="card-block">
+    <form class="form-inline" [formGroup]="addPanelForm" (ngSubmit)="addPanel()" style="text-align:center">
+      <div class="form-group">
+          <input class="form-control" type="text" name="panelName" formControlName="panelName" placeholder="Coutny Name">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="number" name="maxAcPowerOutput" formControlName="maxAcPowerOutput" placeholder="Max AC Power Output" min="0">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="Boolean" name="maxContinuousOutputCurrent" formControlName="maxContinuousOutputCurrent" placeholder="Max Continuous Output Current"  min="0">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="number" name="maxInputVoltage" formControlName="maxInputVoltage" placeholder="Max Input Voltage" min="0">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="number" name="cecWeightedEfficiency" formControlName="cecWeightedEfficiency" placeholder="CEC Weighted Efficiency" min="0">
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="!addPanelForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+    </form>
+  </div>
+</div>

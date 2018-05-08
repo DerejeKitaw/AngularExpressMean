@@ -14,7 +14,7 @@ import { RoutingModule } from './routing.module';
 import { AuthService } from './services/auth.service';
 import { AuthGuardAdminService } from './services/auth-guard-admin.service';
 import { AuthGuardLoginService } from './services/auth-guard-login.service';
-import { HttpModule } from "@angular/http";
+import { HttpModule } from '@angular/http';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastComponent } from './shared/toast/toast.component';
@@ -23,6 +23,7 @@ import { CountyService } from './services/county.service';
 import { InvertersComponent } from './inverters/inverters.component';
 import { PanelsComponent } from './panels/panels.component';
 import { InverterService } from './services/inverter.service';
+import { PanelService } from './services/panel.service';
 
 @NgModule({
   declarations: [
@@ -40,10 +41,10 @@ import { InverterService } from './services/inverter.service';
   ],
   imports: [
     RoutingModule,
-    HttpModule,  //required
+    HttpModule,  // required
     SharedModule,
     BrowserModule,
-    FormsModule, ReactiveFormsModule 
+    FormsModule, ReactiveFormsModule
   ],
   providers: [
     AuthService,
@@ -51,9 +52,10 @@ import { InverterService } from './services/inverter.service';
     AuthGuardAdminService,
     UserService,
     CountyService,
-    InverterService
+    InverterService,
+    PanelService
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA], //to needed to loaad toast
+    schemas: [CUSTOM_ELEMENTS_SCHEMA], // to needed to loaad toast
   bootstrap: [AppComponent]
 })
 export class AppModule { }
